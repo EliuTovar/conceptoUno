@@ -1,38 +1,122 @@
-.App {
-  text-align: center;
+.bg-main{
+  background-color: rgb(218, 218, 218);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.min-height-row {
+    min-height: 92%; 
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  .white-box {
+    border-radius: 20px; 
   }
-  to {
-    transform: rotate(360deg);
+  
+  .blue-gradient-box {
+    background: linear-gradient(to top, #6767fe, #87e1ff); 
+    border-radius: 15px; 
   }
-}
+
+  .top-bar {
+    font-size: 1.25rem; 
+  }
+  
+  .top-bar .btn, .top-bar .form-control {
+    padding: 0.75rem 1.25rem; 
+    font-size: 1.25rem; 
+  }
+  
+  .top-bar .form-control {
+    height: calc(2.5rem + 2px); 
+  }
+
+  .nav {
+    width: 100%; 
+  }
+  
+  .nav_link {
+    color: #303440;
+    display: flex;
+    align-items: center; 
+    padding: 15px 20px; 
+    text-decoration: none;
+  }
+  
+  .nav_link svg {
+    margin-right: 8px; 
+  }
+  
+  .nav_link .fa-arrow-down {
+    margin-left: 15px; 
+  }
+  
+  .list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; 
+    padding: 20px; 
+  }
+  
+  .list_item {
+    list-style: none;
+    width: 100%;
+    text-align: left; 
+    overflow: hidden;
+    margin-bottom: 10px; 
+  }
+  
+  .list_item--click {
+    cursor: pointer;
+  }
+  
+  .list_button {
+    display: flex;
+    align-items: center; 
+    gap: 1em;
+  }
+
+  
+  .list_show {
+    margin-left: auto;
+    list-style: none;
+    transition: height 0.4s;
+    height: 0;
+    overflow: hidden;
+  }
+  
+  .list_inside {
+    padding-left: 30px; 
+  }
+  
+  .nav_link--inside {
+    border-radius: 6px;
+    padding-left: 20px;
+  }
+  
+  .nav_link--inside:hover {
+    background: #f6f8fa;
+  }
+
+  .arrow-icon {
+    transition: transform 0.3s ease;
+  }
+  
+  .rotate-180 {
+    transform: rotate(180deg);
+  }
+  
+  
+  
+  
+ 
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
