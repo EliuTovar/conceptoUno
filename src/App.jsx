@@ -2,8 +2,38 @@ import React, { useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faHouse, faCartShopping, faTicket, faCalendarDays, faLock, faArrowDown, faUser, faKey, faCircleInfo, faSearch, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { CSSTransition } from 'react-transition-group';
 
 function App() {
+
+  const styles = {
+    bgmain: {
+          top: '0', bottom: '0', left: '0', right: '0', padding: '20px'    
+    },
+    iconsearch: {
+      position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', color: 'black', fontSize: '1.7rem'
+    },
+    search: {
+      paddingLeft: '70px',
+                  borderRadius: '30px',
+                  width: '100%',
+                  maxWidth: '500px',
+                  border: '2px solid #ced4da',
+                  fontSize: '1.5rem',
+                  height: '3.5rem',
+                  boxShadow: '0 7px 6px rgba(0, 0, 0, 0.2)'
+    },
+    btnuser: {
+      backgroundColor: 'white', color: 'black', borderRadius: '40px', fontSize: '1.1rem', padding: '1rem 2rem', boxShadow: '0 7px 6px rgba(0, 0, 0, 0.2)'
+
+    },
+    iconuser: {
+      color: 'black', fontSize: '1.5rem'
+    }
+
+    
+  }
+
   const [isTicketsOpen, setIsTicketsOpen] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
 
@@ -12,35 +42,26 @@ function App() {
 
   return (
     <div className="vh-100 position-relative">
-      <div className="text-dark position-absolute bg-main" style={{ top: '0', bottom: '0', left: '0', right: '0', padding: '20px' }}>
+      <div className="text-dark position-absolute bg-main" style={ styles.bgmain  }>
         <div className="row align-items-center mb-4 top-bar">
           <div className="col-6 col-md-2">
             <h1 className="display-6 mb-0">Logotipo</h1>
           </div>
           <div className="col-12 col-md-6 d-flex justify-content-start align-items-center">
             <div className="search-bar" style={{ position: 'relative', width: '100%' }}>
-              <FontAwesomeIcon icon={faSearch} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', color: 'black', fontSize: '1.7rem' }} />
+              <FontAwesomeIcon icon={faSearch} style={styles.iconsearch} />
               <input
                 className="form-control"
                 type="search"
                 placeholder="buscar..."
                 aria-label="Buscar"
-                style={{
-                  paddingLeft: '70px',
-                  borderRadius: '30px',
-                  width: '100%',
-                  maxWidth: '500px',
-                  border: '2px solid #ced4da',
-                  fontSize: '1.5rem',
-                  height: '3.5rem',
-                  boxShadow: '0 7px 6px rgba(0, 0, 0, 0.2)'
-                }}
+                style={ styles.search}
               />
             </div>
           </div>
           <div className="col-12 col-md d-flex justify-content-end align-items-center mt-2 mt-md-0">
-            <button className="btn me-2" style={{ backgroundColor: 'white', color: 'black', borderRadius: '40px', fontSize: '1.1rem', padding: '1rem 2rem', boxShadow: '0 7px 6px rgba(0, 0, 0, 0.2)' }}>
-              <FontAwesomeIcon icon={faUser} className="me-2" style={{ color: 'black', fontSize: '1.5rem' }} />
+            <button className="btn me-2" style={styles.btnuser}>
+              <FontAwesomeIcon icon={faUser} className="me-2" style={styles.iconuser} />
               Leonardo Jaloma
             </button>
           </div>
@@ -64,28 +85,32 @@ function App() {
 
               <div className="nav_item">
                 <a className="nav_link" href="#" onClick={toggleTickets} style={{ fontSize: '1.5rem', padding: '1rem 2rem' }}>
-                  <FontAwesomeIcon icon={faTicket} /> Tickets <FontAwesomeIcon icon={faArrowDown} />
+                  <FontAwesomeIcon icon={faTicket} /> Tickets
+                  <FontAwesomeIcon icon={faArrowDown} className={`arrow-icon ${isTicketsOpen ? 'arrow-down' : 'arrow-right'}`} />
                 </a>
-                {isTicketsOpen && (
-                  <div className="nav flex-column ms-3">
-                    <a className="nav_link" href="#" style={{ fontSize: '1.5rem', padding: '1rem 2rem' }}>Ticket Submenu</a>
-                  </div>
-                )}
+                <div className={`nav flex-column ms-3 ${isTicketsOpen ? 'no-collapse-enter' : ''}`}>
+                </div>
               </div>
 
               <a className="nav_link" href="#" style={{ fontSize: '1.5rem', padding: '1rem 2rem' }}><FontAwesomeIcon icon={faCalendarDays} /> Eventos</a>
 
               <div className="nav_item">
                 <a className="nav_link" href="#" onClick={toggleAdmin} style={{ fontSize: '1.5rem', padding: '1rem 2rem' }}>
-                  <FontAwesomeIcon icon={faLock} /> Admin <FontAwesomeIcon icon={faArrowDown} />
+                  <FontAwesomeIcon icon={faLock} /> Admin
+                  <FontAwesomeIcon icon={faArrowDown} className={`arrow-icon ${isAdminOpen ? 'arrow-down' : 'arrow-right'}`} />
                 </a>
-                {isAdminOpen && (
+                <CSSTransition
+                  in={isAdminOpen}
+                  timeout={300}
+                  classNames="collapse"
+                  unmountOnExit
+                >
                   <div className="nav flex-column ms-3">
                     <a className="nav_link" href="#" style={{ fontSize: '1.5rem', padding: '1rem 2rem' }}><FontAwesomeIcon icon={faUser} /> Usuarios</a>
                     <a className="nav_link" href="#" style={{ fontSize: '1.5rem', padding: '1rem 2rem' }}><FontAwesomeIcon icon={faKey} /> Permisos</a>
                     <a className="nav_link" href="#" style={{ fontSize: '1.5rem', padding: '1rem 2rem' }}><FontAwesomeIcon icon={faCircleInfo} /> etc</a>
                   </div>
-                )}
+                </CSSTransition>
               </div>
             </nav>
           </div>
@@ -119,10 +144,21 @@ function App() {
         </div>
       </div>
     </div>
+
+
+    
   );
+
+  
 }
 
+
+
 export default App;
+
+
+
+
 
 
 
