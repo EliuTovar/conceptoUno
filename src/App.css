@@ -103,6 +103,70 @@
   .rotate-180 {
     transform: rotate(180deg);
   }
+
+  /* Transición de entrada y salida para el menú Admin */
+.collapse-enter {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.collapse-enter-active {
+  max-height: 4000px;
+  opacity: 1;
+  transition: max-height 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.collapse-exit {
+  max-height: 5000px;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.collapse-exit-active {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 500ms ease-in-out, opacity 500ms ease-in-out;
+}
+
+/* Sin animación para el menú de Tickets */
+.no-collapse-enter {
+  height: auto;
+  opacity: 1;
+}
+
+.no-collapse-enter-active {
+  height: auto;
+  opacity: 1;
+}
+
+.no-collapse-exit {
+  height: auto;
+  opacity: 1;
+}
+
+.no-collapse-exit-active {
+  height: auto;
+  opacity: 1;
+}
+
+/* CSS para la rotación de la flecha */
+.arrow-icon {
+  transition: transform 0.29s ease;
+}
+
+.arrow-right {
+  transform: rotate(270deg); /* Flecha inicialmente hacia la derecha */
+}
+
+.arrow-down {
+  transform: rotate(360deg); /* Flecha hacia abajo cuando el menú está abierto */
+}
+
+
+
+
+  
   
   
   
